@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 تسک ۲: پیاده‌سازی کامپوننت Input قابل استفاده مجدد در Next.js 14
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-14.1.0-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC)
+![React](https://img.shields.io/badge/React-19-61DAFB)
 
-First, run the development server:
+## 📋 فهرست مطالب
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [معرفی پروژه](#معرفی-پروژه)
+- [ویژگی‌های پیاده‌سازی شده](#ویژگی‌های-پیاده‌سازی-شده)
+- [تکنولوژی‌های استفاده شده](#تکنولوژی‌های-استفاده-شده)
+- [ساختار پروژه](#ساختار-پروژه)
+- [نصب و راه‌اندازی](#نصب-و-راه‌اندازی)
+- [مستندات کامپوننت Input](#مستندات-کامپوننت-input)
+  - [Props](#props)
+  - [مثال‌های استفاده](#مثال‌های-استفاده)
+- [اعتبارسنجی‌ها](#اعتبارسنجی‌ها)
+- [نمونه فرم تست](#نمونه-فرم-تست)
+- [نکات پیاده‌سازی](#نکات-پیاده‌سازی)
+- [اسکرین‌شات‌ها](#اسکرین‌شات‌ها)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📌 معرفی پروژه
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+این پروژه به عنوان **تسک ۲** برای پیاده‌سازی یک کامپوننت `Input` قابل استفاده مجدد در **Next.js 14** با استفاده از **App Router** طراحی و پیاده‌سازی شده است.
 
-## Learn More
+### هدف تسک:
 
-To learn more about Next.js, take a look at the following resources:
+طراحی و پیاده‌سازی یک کامپوننت ورودی با قابلیت‌های:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- نمایش `label`, `placeholder`, `errorMessage`, `helpText`
+- اعتبارسنجی **real-time** در رویدادهای `onChange` و `onBlur`
+- نمایش خطا در صورت تجاوز از `maxLength`
+- استایل‌دهی با **Tailwind CSS**
+- مدیریت state به صورت **local** داخل Client Component
+- قابلیت استفاده مجدد (props-driven design)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ✨ ویژگی‌های پیاده‌سازی شده
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ✅ Core Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [x] کامپوننت Client با `'use client'`
+- [x] مدیریت state داخلی با `useState`
+- [x] اعتبارسنجی real-time در `onChange`
+- [x] اعتبارسنجی مجدد در `onBlur`
+- [x] نمایش خطا در صورت تجاوز از `maxLength`
+- [x] نمایش شمارنده کاراکتر پویا
+- [x] قابلیت استفاده مجدد با props
+
+### ✅ فرم تست
+
+- [x] صفحه اختصاصی در `/form`
+- [x] نمونه فیلدهای مختلف (نام، موبایل، ایمیل، سن، بیوگرافی)
+- [x] نمایش داده‌های لحظه‌ای
+- [x] نمایش رویدادهای onChange و onBlur
+- [x] اعتبارسنجی پیشرفته شماره موبایل (۱۱ رقم، شروع با 09، فقط عدد)
+
+### ✅ UI/UX
+
+- [x] استایل‌دهی با Tailwind CSS
+- [x] حالت‌های مختلف (عادی، خطا، تایید)
+- [x] متن راهنما (helpText) با آیکون
+- [x] شمارنده کاراکتر با تغییر رنگ
+- [x] دسترسی‌پذیری (aria-\* attributes)
+
+---
+
+## 🛠️ تکنولوژی‌های استفاده شده
+
+| تکنولوژی     | نسخه   | کاربرد                   |
+| ------------ | ------ | ------------------------ |
+| Next.js      | 14.1.0 | فریمورک اصلی             |
+| React        | 19.0.0 | کتابخانه UI              |
+| TypeScript   | 5.x    | تایپ‌سیفتی و مستندسازی   |
+| Tailwind CSS | 3.4    | استایل‌دهی               |
+| Turbopack    | -      | بیلد ابزار (غیرفعال شده) |
+
+---
+
+## 📁 ساختار پروژه
+
+nextjs-input-component/
+├── app/
+│ ├── components/
+│ │ └── Input.tsx # کامپوننت اصلی Input با کامنت‌های کامل
+│ ├── form/
+│ │ └── page.tsx # صفحه فرم تست
+│ ├── favicon.ico
+│ ├── globals.css # استایل‌های سراسری
+│ ├── layout.tsx # لایه‌بندی اصلی
+│ └── page.tsx # صفحه اصلی با لینک به فرم
+├── public/ # فایل‌های استاتیک
+├── .gitignore
+├── next.config.ts # تنظیمات Next.js (غیرفعال کردن Turbopack)
+├── package.json # وابستگی‌ها
+├── postcss.config.js # تنظیمات PostCSS برای Tailwind
+├── tailwind.config.js # تنظیمات Tailwind
+├── tsconfig.json # تنظیمات TypeScript
+└── README.md # این فایل
