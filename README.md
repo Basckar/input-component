@@ -18,7 +18,6 @@
 - [اعتبارسنجی‌ها](#اعتبارسنجی‌ها)
 - [نمونه فرم تست](#نمونه-فرم-تست)
 - [نکات پیاده‌سازی](#نکات-پیاده‌سازی)
-- [اسکرین‌شات‌ها](#اسکرین‌شات‌ها)
 
 ---
 
@@ -100,4 +99,4 @@ nextjs-input-component/
 ├── postcss.config.js # تنظیمات PostCSS برای Tailwind
 ├── tailwind.config.js # تنظیمات Tailwind
 ├── tsconfig.json # تنظیمات TypeScript
-└── README.md # این فایل
+└── README.md # فایل
